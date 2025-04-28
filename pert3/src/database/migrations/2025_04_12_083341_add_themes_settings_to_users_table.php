@@ -6,18 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('theme')->nullable()->default('sunset');
-            $table->string('theme_color')->nullable();
+        Schema::create('footers', function (Blueprint $table) {
+            $table->id();
+            $table->string('footer');
+            $table->timestamps();
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['theme', 'theme_color']);
-        });
+        Schema::dropIfExists('footers');
     }
 };
